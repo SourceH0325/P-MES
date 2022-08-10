@@ -1,0 +1,3 @@
+on explosion:
+	cancel event
+	

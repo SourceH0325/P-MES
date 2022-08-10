@@ -1,0 +1,4 @@
+command /clap:
+    trigger:
+        if sender is console:
+            broadcast "&6&lMINI SEED &7| &c&l서버 완전 종료까지 10분."

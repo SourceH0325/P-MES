@@ -1,0 +1,53 @@
+command /플라이:
+    trigger:
+        if world is "park":
+            if {fly::%player%} is false:
+                set player's flight mode to true
+                message "&6MINI SEED &7| &a플라이가 활성화 됬습니다."
+                set {fly::%player%} to true
+                stop
+
+            if {fly::%player%} is true:
+                set player's flight mode to false
+                message "&6MINI SEED &7| &c플라이가 비활성화 됬습니다."
+                set {fly::%player%} to false
+        
+        if world is "hub":
+            if {fly::%player%} is false:
+                set player's flight mode to true
+                message "&6MINI SEED &7| &a플라이가 활성화 됬습니다."
+                set {fly::%player%} to true
+                stop
+
+            if {fly::%player%} is true:
+                set player's flight mode to false
+                message "&6MINI SEED &7| &c플라이가 비활성화 됬습니다."
+                set {fly::%player%} to false
+
+        if world is "world":
+            if {fly::%player%} is false:
+                set player's flight mode to true
+                message "&6MINI SEED &7| &a플라이가 활성화 됬습니다."
+                set {fly::%player%} to true
+                stop
+
+            if {fly::%player%} is true:
+                set player's flight mode to false
+                message "&6MINI SEED &7| &c플라이가 비활성화 됬습니다."
+                set {fly::%player%} to false
+
+        if world is "HNS":
+            if {fly::%player%} is false:
+                set player's flight mode to true
+                message "&6MINI SEED &7| &a플라이가 활성화 됬습니다."
+                set {fly::%player%} to true
+                stop
+
+            if {fly::%player%} is true:
+                set player's flight mode to false
+                message "&6MINI SEED &7| &c플라이가 비활성화 됬습니다."
+                set {fly::%player%} to false
+
+        else:
+            message "&6MINI SEED &7| &c당신은 플라이 권한 불가 지역에 있습니다."
+

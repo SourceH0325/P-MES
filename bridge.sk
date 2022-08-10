@@ -1,0 +1,155 @@
+options:
+    bridgemaxplayer: 2
+    bridgestartplayer: 2
+    bridgewaittime: 5
+    bridgeplaytime: 600
+
+command /더브릿지 [<text>]:
+    trigger:
+        if arg 1 isn't set:
+            send "&a&l/더브릿지 입장&f&l: &e&l더브릿지에 입장합니다."
+            send "&a&l/더브릿지 퇴장&f&l: &e&l더브릿지에서 퇴장합니다."
+            send "&a&l/더브릿지 관전&f&l: &e&l더브릿지를 관전합니다."
+        if arg 1 is "입장":
+            execute player command "bridge.game"
+            deop the player
+        if arg 1 is "퇴장":
+            execute player command "bridge.quit"
+            deop the player
+        if arg 1 is "관전":
+            execute player command "bridge.see"
+
+command /bridge.game:
+    trigger:
+        if {bridgeplay::%player%} is set:
+            send "&c&l이미 게임에 입장했습니다."
+            stop
+        if number of {bridgegame::players::*} >= {@bridgemaxplayer}:
+            send "&c&l더브릿지의 인원이 모두 찼습니다."
+            stop
+        set {bridgeplay::%player%} to true
+        add player to {bridgegame::players::*}
+        teleport player to location at 1.487, 65, 0.508 in world "hub"
+        set gamemode of player to survival
+        send "&a&l게임에 입장합니다. &7&l[&e&l%number of {bridgegame::players::*}%&7&l/&e&l{@bridgemaxplayer}&7&l]" to {bridgegame::players::*}
+        deop the player
+        wait 1 tick
+        clear player's inventory
+        if number of {bridgegame::players::*} >= {@bridgestartplayer}:
+            if {bridgegame::task} is not set:
+                set {bridgegame::task} to true
+                set {_bridgewait} to {@bridgewaittime}
+                while {bridgegame::task} is true:
+                    send "&e&l%{_bridgewait}%&e&l초 후 게임이 시작됩니다." to {bridgegame::players::*}
+                    remove 1 from {_bridgewait}
+                    wait 1 seconds
+                    if number of {bridgegame::players::*} < {@bridgestartplayer}:
+                        delete {bridgegame::task}
+                        send "&e&l인원이 부족하여 게임이 종료 됩니다." to {bridgegame::players::*}
+                        teleport {bridgegame::players::*} to location at 1.487, 65, 0.508 in world "hub"
+                    if {_bridgewait} <= 0:
+                        set {bridgegame::task} to false
+                if {bridgegame::task} is false:
+                    send "&a&l게임을 시작합니다." to {bridgegame::players::*}
+                    execute command "/bridge.start" by console
+                    set block at location at -1, 60, -34 in world "bri" to blue wool
+                    set block at location at -1, 60, 10 in world "bri" to red wool
+                    teleport {bridgegame::players::1} to location( -0.512, 63, -33.575, world "bri", 0, 0)
+                    give 1 shears of unbreaking 5 to {bridgegame::players::1}
+                    give 200 blue wool to {bridgegame::players::1}
+                    apply haste 2 to {bridgegame::players::1} for 10 minutes
+                    teleport {bridgegame::players::2} to location( -0.545, 63, 10.443, world "bri", 180, 0)
+                    give 1 shears of unbreaking 5 to {bridgegame::players::2}
+                    give 200 red wool to {bridgegame::players::2}
+                    apply haste 2 to {bridgegame::players::2} for 10 minutes
+
+command /bridge.quit:
+    trigger:
+        if {bridgeplay::%player%} is not set:
+            send "&a&l게임에 참여하지 않았습니다."
+            stop
+        delete {bridgeplay::%player%}
+        remove player from {bridgegame::players::*}
+        send "&a&l%player%가 퇴장했습니다." to {bridgegame::players::*}
+        send "&a&l게임에서 퇴장했습니다."
+        clear {bridgegame::players::*}'s inventory
+        teleport player to location at 1.487, 65, 0.508 in world "hub"
+
+command /bridge.start:
+    trigger:
+        broadcast "&e&l%{bridgegame::players::1}%과 %{bridgegame::players::2}%의 더브릿지 대전이 시작합니다!"
+        wait {@bridgeplaytime} seconds
+        send "&c&l게임이 종료됐습니다." to {bridgegame::players::*}
+        set block at location at -3, 163, -14 in world "bri" to redstone block
+        wait 1 seconds
+        set block at location at -3, 163, -14 in world "bri" to air
+        wait 1 tick
+        clear {bridgegame::players::*}'s inventory
+        wait 1 tick
+        teleport {bridgegame::players::*} to location at 1.487, 65, 0.508 in world "hub"
+        wait 1 tick
+        delete {bridgegame::*}
+        delete {bridgeplay::*}
+
+command /bridge.stop:
+    trigger:
+        message "&c&l성공적"
+        set block at location at -3, 163, -14 in world "bri" to redstone block
+        wait 1 seconds
+        set block at location at -3, 163, -14 in world "bri" to air
+        teleport {bridgegame::players::*} to location at 1.487, 65, 0.508 in world "hub"
+        wait 1 tick
+        clear {bridgegame::players::*}'s inventory
+        execute player command "/effect clear"
+        delete {bridgeplay::*}
+        delete {bridgegame::*}
+
+command /bridge.stoped:
+    trigger:
+        send "&c&l게임이 종료됐습니다." to {bridgegame::players::*}
+        set block at location at -3, 163, -14 in world "bri" to redstone block
+        wait 1 tick
+        set block at location at -3, 163, -14 in world "bri" to air
+        wait 1 tick
+        teleport {bridgegame::players::*} to location at 1.487, 65, 0.508 in world "hub"
+        wait 1 tick
+        clear {bridgegame::players::*}'s inventory
+        wait 1 tick
+        delete {bridgegame::*}
+        delete {bridgeplay::*}
+
+command /bridge.see:
+    trigger:
+        teleport player to location( 10.500, 69, -11.500, world "bri", 90, 0)
+        message "&e&l더브릿지 관전 방으로 이동합니다!"
+        clear player's inventory
+        wait 1 tick
+        set gamemode of player to adventure
+        wait 1 tick
+        deop the player
+
+on death of player:
+    if {bridgegame::task} is false:
+        if victim is {bridgegame::players::1}:
+            if attacker is {bridgegame::players::2}:
+                broadcast "&e&l%attacker%님이 더브릿지 에서 승리했습니다."
+                execute command "/bridge.stoped" by console
+            if damage cause is void:
+                broadcast "&e&l%{bridgegame::players::2}%님이 더브릿지 에서 승리했습니다."
+                execute command "/bridge.stoped" by console
+            if damage cause is fall:
+                broadcast "&e&l%{bridgegame::players::2}%님이 더브릿지 에서 승리했습니다."
+                execute command "/bridge.stoped" by console
+        if victim is {bridgegame::players::2}:
+            if attacker is {bridgegame::players::1}:
+                broadcast "&e&l%attacker%님이 더브릿지 에서 승리했습니다." 
+                execute command "/bridge.stoped" by console
+            if damage cause is void:
+                broadcast "&e&l%{bridgegame::players::1}%님이 더브릿지 에서 승리했습니다." 
+                execute command "/bridge.stoped" by console
+            if damage cause is fall:
+                broadcast "&e&l%{bridgegame::players::1}%님이 더브릿지 에서 승리했습니다." 
+                execute command "/bridge.stoped" by console
+
+on enter "down":
+    set player's health to 0.1

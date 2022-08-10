@@ -1,0 +1,149 @@
+on command "/world":
+    if name of player is "HAN_PODONG":
+        message "&6MINI SEED &7| &e&l작동했습니다."
+
+    else:
+        cancel event
+
+on command "/mv":
+    if name of player is "HAN_PODONG":
+        message "&6MINI SEED &7| &e&l작동했습니다."
+
+    else:
+        cancel event
+
+on command "/lp":
+    if name of player is "HAN_PODONG":
+        message "&6MINI SEED &7| &e&l작동했습니다."
+
+    else:
+        cancel event
+
+on command "/bridge":
+    if name of player is "HAN_PODONG":
+        message "&6MINI SEED &7| &e&l작동했습니다."
+
+    else:
+        cancel event
+
+on command "/deop":
+    if name of player is "HAN_PODONG":
+        message "&6MINI SEED &7| &e&l작동했습니다."
+
+    else:
+        cancel event
+
+on command "/op":
+    if name of player is "HAN_PODONG":
+        message "&6MINI SEED &7| &e&l작동했습니다."
+
+    else:
+        cancel event
+
+on command "/kick":
+    if name of player is "HAN_PODONG":
+        message "&6MINI SEED &7| &e&l작동했습니다."
+
+    else:
+        cancel event
+
+on command "/ban":
+    if name of player is "HAN_PODONG":
+        message "&6MINI SEED &7| &e&l작동했습니다."
+
+    else:
+        cancel event
+
+on command "/nickname":
+    if name of player is "HAN_PODONG":
+        message "&6MINI SEED &7| &e&l작동했습니다."
+
+    else:
+        cancel event
+
+on command "/cc":
+    if name of player is "HAN_PODONG":
+        message "&6MINI SEED &7| &e&l작동했습니다."
+
+    else:
+        cancel event
+
+on command "/customcrafting":
+    if name of player is "HAN_PODONG":
+        message "&6MINI SEED &7| &e&l작동했습니다."
+
+    else:
+        cancel event
+
+on command "/kill":
+    if name of player is "HAN_PODONG":
+        message "&6MINI SEED &7| &e&l작동했습니다."
+
+    else:
+        cancel event
+
+on command "/minecraft:kill":
+    if name of player is "HAN_PODONG":
+        message "&6MINI SEED &7| &e&l작동했습니다."
+
+    else:
+        cancel event
+
+on command "/restart":
+    if name of player is "HAN_PODONG":
+        message "&6MINI SEED &7| &e&l작동했습니다."
+
+    else:
+        cancel event
+
+on command "/stop":
+    if name of player is "HAN_PODONG":
+        message "&6MINI SEED &7| &e&l작동했습니다."
+
+    else:
+        cancel event
+
+on place of respawn anchor:
+    cancel event
+
+command /opg:
+    trigger:
+        if player's world is "bri":
+            deop the player
+            message "&e&l오피 가능 지역이 아닙니다."
+        if player's world is "park":
+            op the player
+            message "&e&l오피 가능 지역이 확인됬습니다."
+        if player's world is "hub":
+            deop the player
+            message "&e&l오피 가능 지역이 아닙니다."
+        if player's world is "world":
+            op the player
+            message "&e&l오피 가능 지역이 확인됬습니다."
+        if player's world is "push":
+            op the player
+            message "&e&l오피 가능 지역이 확인됬습니다."
+        if player's world is "oe":
+            deop the player
+            message "&e&l오피 가능 지역이 아닙니다."
+
+command /opge:
+    trigger:
+        if name of player is "HAN_PODONG":
+            op the player
+
+        else:
+            message "&c&l당신은 관리자가 아닙니다."
+
+command /명령어:
+    trigger:
+        message "&e&l/opg: 오피 가능 지역에 있을때 오피가 지급됩니다."
+        message "&a&l/야생: 야생으로 이동합니다."
+        message "&e&l/창고: 창고으로 이동합니다."
+        message "&a&l/테스트장: 커멘드,건축등이 가능한 테스트장으로 이동합니다."
+        message "&e&l/spawn,/스폰: 스폰으로 이동합니다."
+        message "&a&l/더브릿지: 더브릿지에 대한 설명을 표시합니다."
+        message "&e&l/진야,/진짜야생: 진짜 야생으로 이동합니다."
+        message "&a&l/음식: 스테이크 32개를 지급합니다."
+
+

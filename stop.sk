@@ -1,0 +1,153 @@
+command /serverstop60:
+	trigger:
+		if sender is console:
+			broadcast "&6&lMINI SEED &7| &c&l 서버 종료가 활성화 됬습니다. 남은 시간:60분"
+			wait 59 minutes 50 seconds
+			broadcast "&6&lMINI SEED &7| &c&l10초 뒤 서버가 종료 됩니다."
+			wait 5 seconds
+			broadcast "&6&lMINI SEED &7| &c&l5초 뒤 서버가 종료 됩니다."
+			wait 1 seconds
+			broadcast "&6&lMINI SEED &7| &c&l4초 뒤 서버가 종료 됩니다."
+			wait 1 seconds
+			broadcast "&6&lMINI SEED &7| &c&l3초 뒤 서버가 종료 됩니다."
+			wait 1 seconds
+			broadcast "&6&lMINI SEED &7| &c&l2초 뒤 서버가 종료 됩니다."
+			wait 1 seconds
+			broadcast "&6&lMINI SEED &7| &c&l1초 뒤 서버가 종료 됩니다."
+			wait 1 seconds
+			stop the server
+			
+		else:
+			message "&c&l당신은 콘솔 권한이 없습니다!"
+
+command /serverstop50:
+	trigger:
+		if sender is console:
+			broadcast "&6&lMINI SEED &7| &c&l 서버 종료가 활성화 됬습니다. 남은 시간:50분"
+			wait 49 minutes 50 seconds
+			broadcast "&6&lMINI SEED &7| &c&l10초 뒤 서버가 종료 됩니다."
+			wait 5 seconds
+			broadcast "&6&lMINI SEED &7| &c&l5초 뒤 서버가 종료 됩니다."
+			wait 1 seconds
+			broadcast "&6&lMINI SEED &7| &c&l4초 뒤 서버가 종료 됩니다."
+			wait 1 seconds
+			broadcast "&6&lMINI SEED &7| &c&l3초 뒤 서버가 종료 됩니다."
+			wait 1 seconds
+			broadcast "&6&lMINI SEED &7| &c&l2초 뒤 서버가 종료 됩니다."
+			wait 1 seconds
+			broadcast "&6&lMINI SEED &7| &c&l1초 뒤 서버가 종료 됩니다."
+			wait 1 seconds
+			stop the server
+
+		else:
+			message "&c&l당신은 콘솔 권한이 없습니다!"
+
+command /serverstop40:
+	trigger:
+		if sender is console:
+			broadcast "&6&lMINI SEED &7| &c&l 서버 종료가 활성화 됬습니다. 남은 시간:40분"
+			wait 39 minutes 50 seconds
+			broadcast "&6&lMINI SEED &7| &c&l10초 뒤 서버가 종료 됩니다."
+			wait 5 seconds
+			broadcast "&6&lMINI SEED &7| &c&l5초 뒤 서버가 종료 됩니다."
+			wait 1 seconds
+			broadcast "&6&lMINI SEED &7| &c&l4초 뒤 서버가 종료 됩니다."
+			wait 1 seconds
+			broadcast "&6&lMINI SEED &7| &c&l3초 뒤 서버가 종료 됩니다."
+			wait 1 seconds
+			broadcast "&6&lMINI SEED &7| &c&l2초 뒤 서버가 종료 됩니다."
+			wait 1 seconds
+			broadcast "&6&lMINI SEED &7| &c&l1초 뒤 서버가 종료 됩니다."
+			wait 1 seconds
+			stop the server
+
+		else:
+			message "&c&l당신은 콘솔 권한이 없습니다!"
+
+command /serverstop30:
+	trigger:
+		if sender is console:
+			broadcast "&6&lMINI SEED &7| &c&l 서버 종료가 활성화 됬습니다. 남은 시간:30분"
+			wait 29 minutes 50 seconds
+			broadcast "&6&lMINI SEED &7| &c&l10초 뒤 서버가 종료 됩니다."
+			wait 5 seconds
+			broadcast "&6&lMINI SEED &7| &c&l5초 뒤 서버가 종료 됩니다."
+			wait 1 seconds
+			broadcast "&6&lMINI SEED &7| &c&l4초 뒤 서버가 종료 됩니다."
+			wait 1 seconds
+			broadcast "&6&lMINI SEED &7| &c&l3초 뒤 서버가 종료 됩니다."
+			wait 1 seconds
+			broadcast "&6&lMINI SEED &7| &c&l2초 뒤 서버가 종료 됩니다."
+			wait 1 seconds
+			broadcast "&6&lMINI SEED &7| &c&l1초 뒤 서버가 종료 됩니다."
+			wait 1 seconds
+			stop the server
+
+		else:
+			message "&c&l당신은 콘솔 권한이 없습니다!"
+
+command /serverstop20:
+	trigger:
+		if sender is console:
+			broadcast "&6&lMINI SEED &7| &c&l 서버 종료가 활성화 됬습니다. 남은 시간:20분"
+			wait 19 minutes 50 seconds
+			broadcast "&6&lMINI SEED &7| &c&l10초 뒤 서버가 종료 됩니다."
+			wait 5 seconds
+			broadcast "&6&lMINI SEED &7| &c&l5초 뒤 서버가 종료 됩니다."
+			wait 1 seconds
+			broadcast "&6&lMINI SEED &7| &c&l4초 뒤 서버가 종료 됩니다."
+			wait 1 seconds
+			broadcast "&6&lMINI SEED &7| &c&l3초 뒤 서버가 종료 됩니다."
+			wait 1 seconds
+			broadcast "&6&lMINI SEED &7| &c&l2초 뒤 서버가 종료 됩니다."
+			wait 1 seconds
+			broadcast "&6&lMINI SEED &7| &c&l1초 뒤 서버가 종료 됩니다."
+			wait 1 seconds
+			stop the server
+
+		else:
+			message "&c&l당신은 콘솔 권한이 없습니다!"
+
+command /serverstop10:
+	trigger:
+		if sender is console:
+			broadcast "&6&lMINI SEED &7| &c&l 서버 종료가 활성화 됬습니다. 남은 시간:10분"
+			wait 9 minutes 50 seconds
+			broadcast "&6&lMINI SEED &7| &c&l10초 뒤 서버가 종료 됩니다."
+			wait 5 seconds
+			broadcast "&6&lMINI SEED &7| &c&l5초 뒤 서버가 종료 됩니다."
+			wait 1 seconds
+			broadcast "&6&lMINI SEED &7| &c&l4초 뒤 서버가 종료 됩니다."
+			wait 1 seconds
+			broadcast "&6&lMINI SEED &7| &c&l3초 뒤 서버가 종료 됩니다."
+			wait 1 seconds
+			broadcast "&6&lMINI SEED &7| &c&l2초 뒤 서버가 종료 됩니다."
+			wait 1 seconds
+			broadcast "&6&lMINI SEED &7| &c&l1초 뒤 서버가 종료 됩니다."
+			wait 1 seconds
+			stop the server
+
+		else:
+			message "&c&l당신은 콘솔 권한이 없습니다!"
+
+command /serverstop5:
+	trigger:
+		if sender is console:
+			broadcast "&6&lMINI SEED &7| &c&l 서버 종료가 활성화 됬습니다. 남은 시간:5분"
+			wait 4 minutes 50 seconds
+			broadcast "&6&lMINI SEED &7| &c&l10초 뒤 서버가 종료 됩니다."
+			wait 5 seconds
+			broadcast "&6&lMINI SEED &7| &c&l5초 뒤 서버가 종료 됩니다."
+			wait 1 seconds
+			broadcast "&6&lMINI SEED &7| &c&l4초 뒤 서버가 종료 됩니다."
+			wait 1 seconds
+			broadcast "&6&lMINI SEED &7| &c&l3초 뒤 서버가 종료 됩니다."
+			wait 1 seconds
+			broadcast "&6&lMINI SEED &7| &c&l2초 뒤 서버가 종료 됩니다."
+			wait 1 seconds
+			broadcast "&6&lMINI SEED &7| &c&l1초 뒤 서버가 종료 됩니다."
+			wait 1 seconds
+			stop the server
+
+		else:
+			message "&c&l당신은 콘솔 권한이 없습니다!"

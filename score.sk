@@ -1,0 +1,8 @@
+every 1 seconds:
+    loop all players:
+        wipe loop-player's sidebar
+        set name of sidebar of loop-player to "&6MINI SEED STOP LEFT &c1&6DAY"
+        set score "&7==================" in sidebar of loop-player to 11
+        set score "&eNickname: &b%loop-player%" in sidebar of loop-player to 10
+        set score "   " in sidebar of loop-player to 9
+        set score "&b%now%" in sidebar of loop-player to 8

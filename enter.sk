@@ -1,0 +1,14 @@
+on first join:
+	set join message to "&7[&2+&7] &7%player%"
+	message "&e&l미니 시드 서버는 팬 서버로 그저 재미로 만든 서버입니다!" 
+	message "&e&l미니 시드 서버의 수명은 시드서버가 시즌2가 나올때 까지이며"
+	message "&e&l만약 서버를 운영하는 데에 문제가 생긴다면 서버가 종료할 수 있습니다"
+	message "&e&l그저 재밌게 즐겨주셧으면 합니다.^^"
+	wait 1 tick
+	execute player command "/spawn"
+
+on join:
+	set join message to "&7[&2+&7] &7%player%"
+	
+on quit:
+	set quit message to "&7[&c-&7] &7%player%"

@@ -1,0 +1,29 @@
+on walking on red mushroom block:
+    if world is "hub":
+        teleport player to location at 1.487, 65, 0.508 in world "hub"
+        if {game::%player%} is not set:
+            broadcast "&6MINI SEED &7| &e&l축하합니다 %player%님이 스카이 점프 파쿠르를 성공하셨습니다!"
+            set {game::%player%} to true
+            stop
+
+        if {game::%player%} is set:
+            message "&6MINI SEED &7| &e&l축하합니다 스카이 점프 파쿠르를 성공했습니다! (중복 성공으로 전체챗에 표시 되지 않습니다.)"
+
+on walking on sponge:
+    if world is "hub":
+        teleport player to location at 1.487, 65, 0.508 in world "hub"
+        if {game1::%player%} is not set:
+            broadcast "&6MINI SEED &7| &e&l축하합니다 %player%님이 이걸 찾네 이스터에그를 성공하셨습니다!"
+            set {game1::%player%} to true
+            stop
+
+        if {game1::%player%} is set:
+            message "&6MINI SEED &7| &e&l축하합니다 이걸 찾네 이스터에그를 성공했습니다! (중복 성공으로 전체챗에 표시 되지 않습니다.)"
+
+on death of player:
+    if world is "park":
+        if damage cause is void:
+            teleport player to location at 1.487, 65, 0.508 in world "hub"
+        if damage cause is fall:
+            teleport player to location at 1.487, 65, 0.508 in world "hub"
+

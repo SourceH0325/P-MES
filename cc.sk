@@ -1,0 +1,13 @@
+options:
+	S : &6MINI SEED &7|
+
+command /채팅청소:
+	trigger:
+		if sender is console:
+			loop 100 times:
+				broadcast ""
+			broadcast "{@S} &a&l채팅창이 청소됬습니다."
+			stop
+		
+		else:
+			message "&c&l당신은 콘솔 권한이 없습니다!"

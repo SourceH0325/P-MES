@@ -1,0 +1,80 @@
+options:
+	S : &6MINI SEED &7|
+
+command /야생:
+    trigger:
+        teleport player to location at 0, 64, 0 in world "world"
+        message "{@S} &e&l야생으로 이동합니다."
+        clear player's inventory
+        op the player
+
+command /창고:
+    trigger:
+        teleport player to location at 1.502, 185, 0.510 in world "HNS"
+        message "{@S} &e&l창고로 이동합니다."
+        clear player's inventory
+        op the player
+
+command /테스트장:
+    trigger:
+        teleport player to location( 15.492, 63, -81.990, world "park", 90, 0)
+        message "{@S} &e&l테스트장으로 이동합니다."
+        clear player's inventory
+        op the player
+
+command /spawn:
+    trigger:
+        teleport player to location at 1.487, 65, 0.508 in world "hub"
+        message "{@S} &e&l스폰으로 이동합니다."
+        wait 1 tick
+        deop the player
+        wait 1 tick
+        if name of player is "HAN_PODONG":
+            op the player
+
+command /스폰:
+    trigger:
+        teleport player to location at 1.487, 65, 0.508 in world "hub" 
+        message "{@S} &e&l스폰으로 이동합니다."
+        wait 1 tick
+        deop the player
+        wait 1 tick
+        if name of player is "HAN_PODONG":
+            op the player 
+
+command /진야:
+    trigger:
+        teleport player to location at 207, 64, -144 in world "oe" 
+        message "{@S} &e&l진짜야생으로 이동합니다."
+        wait 1 tick
+        deop the player
+        wait 1 tick
+        set gamemode of player to survival
+
+command /진짜야생:
+    trigger:
+        teleport player to location at 207, 64, -144 in world "oe" 
+        message "{@S} &e&l진짜야생으로 이동합니다."
+        wait 1 tick
+        deop the player
+        wait 1 tick
+        set gamemode of player to survival
+
+command /음식:
+    trigger:
+        give 32 cooked beef to player
+        message "{@S} &e&l지급 완료"
+
+on death of player:
+    if damage cause is void: 
+        teleport player to location at 1.487, 65, 0.508 in world "hub"
+        deop the player
+        wait 1 tick
+        clear player's inventory
+        deop the player
+    if damage cause is fall: 
+        teleport player to location at 1.487, 65, 0.508 in world "hub"
+        deop the player
+        wait 1 tick
+        clear player's inventory
+        deop the player

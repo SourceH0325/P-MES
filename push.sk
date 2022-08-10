@@ -1,0 +1,308 @@
+command /test1:
+    trigger:
+        teleport player to location at -2, 64, -2 in world "push"
+
+options:
+    pushmaxplayer: 2
+    pushstartplayer: 2
+    pushwaittime: 10
+    pushplaytime: 20
+    z : &6MINI SEED &7|
+
+command /밀치기서바이벌 [<text>]:
+    trigger:
+        if arg 1 isn't set:
+            send "&a/밀치기서바이벌 입장&f: &e밀치기서바이벌 대기실로 이동합니다."
+            send "&a/밀치기서바이벌 퇴장&f: &e밀치기서바이벌에서 나갑니다."
+        if arg 1 is "입장":
+            execute player command "push.set"
+            deop the player
+        if arg 1 is "퇴장":    
+            execute player command "push.quit"
+            deop the player
+
+command /push.set:
+    trigger:
+        if {pushplay::%player%} is set:
+            send "{@z} &e밀치기서바이벌에 이미 입장했습니다!"
+            stop
+        if number of {pushgame::players::*} >= {@pushmaxplayer}:
+            send "{@z} &e밀치기서바이벌의 인원이 모두 찼습니다!"
+            stop
+        set {pushplay::%player%} to true
+        add player to {pushgame::players::*}
+        teleport player to location at 1.487, 65, 0.508 in world "hub"
+        set gamemode of player to survival
+        wait 1 tick
+        clear player's inventory
+        send "{@z} &a게임에 입장합니다."
+        send action bar "&7[&e%number of {pushgame::players::*}%&7/&e{@pushmaxplayer}&7]" to {pushgame::players::*}
+        if number of {pushgame::players::*} >= {@pushstartplayer}:
+            if {pushgame::task} is not set: 
+                set {pushgame::task} to true
+                set {_pushwait} to {@pushwaittime}
+                while {pushgame::task} is true:
+                    send "{@z} &a%{_pushwait}%&e초 후 게임이 시작됩니다!" to {pushgame::players::*}
+                    remove 1 from {_pushwait}
+                    wait 1 seconds
+                    if number of {pushgame::players::*} < {@pushstartplayer}:
+                        delete {pushgame::task}
+                        send "{@z} &e인원이 부족하여 게임이 종료 됩니다!" to {pushgame::players::*}
+                    if {_pushwait} <= 0:
+                        set {pushgame::task} to false
+                if {pushgame::task} is false:
+                    wait 1 tick
+                    execute command "/mvcreate e10 normal" by console
+                    wait 1 tick
+                    send "{@z} &a월드 생성중...10초" to {pushgame::players::*}
+                    wait 5 seconds
+                    send action bar "{@z} &a5" to {pushgame::players::*}
+                    wait 1 seconds
+                    send action bar "{@z} &a4" to {pushgame::players::*}
+                    wait 1 seconds
+                    send action bar "{@z} &c3" to {pushgame::players::*}
+                    wait 1 seconds
+                    send action bar "{@z} &c2" to {pushgame::players::*}
+                    wait 1 seconds
+                    send action bar "{@z} &c1" to {pushgame::players::*}
+                    wait 1 seconds
+                    execute {pushgame::players::*} command "/push.oakfood"
+                    wait 1 tick
+                    execute command "/push.start" by console
+                    op the player
+                    wait 1 tick
+                    execute {pushgame::players::*} command "/mvtp e10"
+                    wait 5 seconds
+                    deop the player
+
+command /push.quit:
+    trigger:
+        if {pushplay::%player%} is not set:
+            send "{@z} &a게임에 참여하지 않았습니다!"
+            stop
+        delete {pushplay::%player%}
+        remove player from {pushgame::players::*}
+        send "{@z} &e%player%님이 게임에서 퇴장했습니다!" to {pushgame::players::*}
+        send "{@z} &e게임에서 퇴장했습니다!"
+
+        if {pushgame::firststart} is set:
+            execute command "/push.end" by console
+
+command /push.start:
+    trigger:
+        set {pushgame::firststart} to true
+        deop the player
+        wait {@pushplaytime} minutes
+        send "{@z} &c게임 종료까지 10초 남았습니다!" to {pushgame::players::*}
+        wait 5 seconds
+        send "{@z} &c게임 종료까지 5초 남았습니다!" to {pushgame::players::*}
+        wait 1 seconds
+        send "{@z} &c게임 종료까지 4초 남았습니다!" to {pushgame::players::*}
+        wait 1 seconds
+        send "{@z} &c게임 종료까지 3초 남았습니다!" to {pushgame::players::*}
+        wait 1 seconds
+        send "{@z} &c게임 종료까지 2초 남았습니다!" to {pushgame::players::*}
+        wait 1 seconds
+        send "{@z} &c게임 종료까지 1초 남았습니다!" to {pushgame::players::*}
+        wait 1 seconds
+        teleport {pushgame::players::1} to location( 1.500, 64, 1.500, world "push", -45, 0)
+        set gamemode of {pushgame::players::1} to adventure
+        if {pushgame::players::1} has 1 netherite sword:
+            wait 1 tick
+            clear {pushgame::players::1}'s inventory
+            wait 1 seconds
+            execute {pushgame::players::1} command "/push.give5"
+        else:
+            if {pushgame::players::1} has 1 netherite ingot:
+                wait 1 tick
+                clear {pushgame::players::1}'s inventory
+                wait 1 seconds
+                execute {pushgame::players::1} command "/push.give4"
+            else:
+                if {pushgame::players::1} has 1 end rod:
+                    wait 1 tick
+                    clear {pushgame::players::1}'s inventory
+                    wait 1 seconds
+                    execute {pushgame::players::1} command "/push.give3"
+                else:
+                    if {pushgame::players::1} has 1 lead:
+                        wait 1 tick
+                        clear {pushgame::players::1}'s inventory
+                        wait 1 seconds
+                        execute {pushgame::players::1} command "/push.give2"
+                    else:
+                        if {pushgame::players::1} has 1 blaze rod:
+                            wait 1 tick
+                            clear {pushgame::players::1}'s inventory
+                            wait 1 seconds
+                            execute {pushgame::players::1} command "/push.give1"
+                        else:
+                            clear {pushgame::players::1}'s inventory
+                            give 1 stick to {pushgame::players::1}
+
+        teleport {pushgame::players::2} to location( 18.500, 64, 18.500, world "push", 135, 0)
+        set gamemode of {pushgame::players::2} to adventure
+        if {pushgame::players::2} has 1 netherite sword:
+            clear {pushgame::players::2}'s inventory
+            wait 1 seconds
+            execute {pushgame::players::2} command "/push.give5"
+        else:
+            if {pushgame::players::2} has 1 netherite ingot:
+                clear {pushgame::players::2}'s inventory
+                wait 1 seconds
+                execute {pushgame::players::2} command "/push.give4"
+            else:
+                if {pushgame::players::2} has 1 end rod:
+                    clear {pushgame::players::2}'s inventory
+                    wait 1 seconds
+                    execute {pushgame::players::2} command "/push.give3"
+                else:
+                    if {pushgame::players::2} has 1 lead:
+                        clear {pushgame::players::2}'s inventory
+                        wait 1 seconds
+                        execute {pushgame::players::2} command "/push.give2"
+                    else:
+                        if {pushgame::players::2} has 1 blaze rod:
+                            clear {pushgame::players::2}'s inventory
+                            wait 1 seconds
+                            execute {pushgame::players::2} command "/push.give1"
+                        else:
+                            clear {pushgame::players::2}'s inventory
+                            give 1 stick to {pushgame::players::2}
+        set {pushgame::starting} to true
+        wait 10 minutes
+        send "{@z} &c게임이 종료 되었습니다!" to {pushgame::players::*}
+        wait 1 seconds
+        broadcast "{@z} &e %{pushgame::players::1}%와 %{pushgame::players::2}%의 밀치기서바이벌대전에서 &c무승부 &e처리 되었습니다!"
+        teleport {pushgame::players::*} to location at 1.487, 65, 0.508 in world "hub"
+        clear {pushgame::players::*}'s inventory
+        deop the player
+        delete {pushgame::*}
+        delete {pushplay::*}
+        execute command "/mvdelete e10" by console
+        wait 5 tick
+        execute command "/mv confirm" by console
+        wait 1 tick
+        set {push::buildstart} to false
+        wait 10 seconds
+        set {push::buildstart} to true
+        broadcast "{@z} &e밀치기서바이벌에 재설정 되었습니다!"
+
+command /push.emergencystop:
+    trigger:
+        message "{@z} &c게임을 성공적으로 강제종료 했습니다!"
+        wait 1 seconds
+        teleport {pushgame::players::*} to location at 1.487, 65, 0.508 in world "hub"
+        clear {pushgame::players::*}'s inventory
+        deop the player
+        delete {pushgame::*}
+        delete {pushplay::*}
+        execute command "/mvdelete e10" by console
+        wait 5 seconds
+        execute command "/mv confirm" by console
+        wait 1 tick
+        set {push::buildstart} to false
+        wait 10 seconds
+        set {push::buildstart} to true
+        broadcast "{@z} &e밀치기서바이벌에 재설정 되었습니다!"
+
+command /push.end:
+    trigger:
+        send "{@z} &c게임이 종료 되었습니다!" to {pushgame::players::*}
+        set {pushgame::starting} to false
+        wait 1 seconds
+        teleport {pushgame::players::*} to location at 1.487, 65, 0.508 in world "hub"
+        clear {pushgame::players::*}'s inventory
+        deop the player
+        delete {pushgame::*}
+        delete {pushplay::*}
+        execute command "/mvdelete e10" by console
+        wait 5 seconds
+        execute command "/mv confirm" by console
+        wait 1 tick
+        set {push::buildstart} to false
+        wait 10 seconds
+        set {push::buildstart} to true
+        broadcast "{@z} &e밀치기서바이벌에 재설정 되었습니다!"
+
+command /push.quiting:
+    trigger:
+        broadcast "{@z} &c플레이어가 퇴장하여 밀치기서바이벌이 종료되었습니다."
+        set {pushgame::starting} to false
+        wait 1 tick
+        teleport {pushgame::players::*} to location at 1.487, 65, 0.508 in world "hub"
+        clear {pushgame::players::*}'s inventory
+        deop the player
+        delete {pushgame::*}
+        delete {pushplay::*}
+        execute command "/mvdelete e10" by console
+        wait 5 seconds
+        execute command "/mv confirm" by console
+        wait 1 tick
+        set {push::buildstart} to false
+        wait 10 seconds
+        set {push::buildstart} to true
+        broadcast "{@z} &e밀치기서바이벌에 재설정 되었습니다!"
+
+command /push.give1:
+    trigger:
+        give 1 blaze rod of knockback 1 named "&e밀치기&aI" to player
+
+command /push.give2:
+    trigger:
+        give 1 lead of knockback 2 named "&e밀치기&6II" to player
+
+command /push.give3:
+    trigger:
+        give 1 end rod of knockback 3 named "&e밀치기&cIII" to player
+
+command /push.give4:
+    trigger:
+        give 1 netherite ingot of knockback 4 named "&e밀치기&dIV" to player 
+
+command /push.give5:
+    trigger:
+        give 1 netherite sword of knockback 5 named "&e밀치기&dV" to player  
+
+command /push.oakfood:
+    trigger:
+        give 20 oak log to player
+        give 32 cooked beef to player
+
+on command "/밀치기서바이벌 입장":
+    if {push::buildstart} is false:
+        cancel event
+        send "&c월드가 재생성중 입니다!"
+
+on death of player:
+    if {pushgame::starting} is true:
+        if victim is {pushgame::players::1}:
+            if attacker is {pushgame::players::2}:
+                broadcast "&e%attacker%님이 밀치기서바이벌 에서 승리했습니다."
+                execute command "/push.end" by console
+            if damage cause is void:
+                broadcast "&e%{pushgame::players::2}%님이 밀치기서바이벌 에서 승리했습니다."
+                execute command "/push.end" by console
+            if damage cause is fall:
+                broadcast "&e%{pushgame::players::2}%님이 밀치기서바이벌 에서 승리했습니다."
+                execute command "/push.end" by console
+        if victim is {pushgame::players::2}:
+            if attacker is {pushgame::players::1}:
+                broadcast "&e%attacker%님이 밀치기서바이벌 에서 승리했습니다."
+                execute command "/push.end" by console
+            if damage cause is void:
+                broadcast "&e%{pushgame::players::1}%님이 밀치기서바이벌 에서 승리했습니다."
+                execute command "/push.end" by console
+            if damage cause is fall:
+                broadcast "&e%{pushgame::players::1}%님이 밀치기서바이벌 에서 승리했습니다."
+                execute command "/push.end" by console
+
+on death of player:
+    if world is "e10":
+        send "{@z} &e리스폰 중입니다..10초"
+        wait 10 seconds
+        op the player
+        wait 1 seconds
+        execute player command "/mvtp e10"
+        wait 2 seconds
+        deop the player
